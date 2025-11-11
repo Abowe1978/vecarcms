@@ -13,6 +13,11 @@ class DemoAdminSeeder extends Seeder
      */
     public function run(): void
     {
+        if (!config('app.demo_mode')) {
+            $this->command?->warn('ℹ️  Demo mode disattivata: salto creazione Demo Admin.');
+            return;
+        }
+
         $user = User::updateOrCreate(
             ['email' => 'admin@example.com'],
             [

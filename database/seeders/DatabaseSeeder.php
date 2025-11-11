@@ -11,10 +11,19 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
+        // Always seed core roles/permissions and developer account
         $this->call([
-            // VeCarCMS - Core Seeders
             VeCarCMSRolesSeeder::class,
+            PluginPermissionSeeder::class,
             DeveloperSeeder::class,
+        ]);
+
+        if (!config('app.demo_mode')) {
+            $this->command?->warn('ℹ️  Demo mode disattivata: seeders demo ignorati.');
+            return;
+        }
+
+        $this->call([
             DemoAdminSeeder::class,
             SettingsSeeder::class,
             WidgetZonesSeeder::class,
@@ -27,24 +36,6 @@ class DatabaseSeeder extends Seeder
             DWNThemeLegalPagesSeeder::class,
             SampleContentSeeder::class,
             DWNThemeSitemapSeeder::class,
-            
-            
-            // OLD RREC Seeders (commented out - will be removed)
-            //PlanSeeder::class,
-            //PlansAndPaymentPlansSeeder::class,
-            //RolesAndPermissionsSeeder::class, // OLD RREC roles
-            //UsersTableSeeder::class,
-            //CategorySeeder::class,
-            //SectionSeeder::class,
-            //PostSeeder::class,
-            //MediaSeeder::class,
-            //MemberSectionSeeder::class,
-            //MakeSeeder::class,
-            //VehicleSeeder::class,
-            //UserVehicleSeeder::class,
-            //UserPlanSeeder::class,
-            //PaymentSeeder::class,
-            //CarDirectorySeeder::class,
         ]);
     }
 }

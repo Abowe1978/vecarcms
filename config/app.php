@@ -43,6 +43,18 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Demo Mode
+    |--------------------------------------------------------------------------
+    |
+    | Toggle this flag to enable demo-specific behaviour (prefilled credentials,
+    | placeholder content, etc.). Set APP_DEMO=true in your .env to activate.
+    |
+    */
+
+    'demo_mode' => (bool) env('APP_DEMO', false),
+
+    /*
+    |--------------------------------------------------------------------------
     | Application URL
     |--------------------------------------------------------------------------
     |

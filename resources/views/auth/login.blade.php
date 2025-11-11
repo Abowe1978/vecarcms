@@ -219,15 +219,27 @@
                 <form method="POST" action="{{ route('login') }}">
                     @csrf
 
-                    <input id="email" class="auth-input" type="email" name="email" placeholder="Email address" value="{{ old('email', 'admin@example.com') }}" required autofocus autocomplete="username" />
+                    @php
+                        $demoMode = config('app.demo_mode');
+                        $demoEmail = 'admin@example.com';
+                        $demoPassword = 'password';
+                    @endphp
+
+                    <input id="email" class="auth-input" type="email" name="email" placeholder="Email address" value="{{ old('email', $demoMode ? $demoEmail : '') }}" required autofocus autocomplete="username" />
                     @error('email')
                         <p class="text-sm text-red-600">{{ $message }}</p>
                     @enderror
 
-                    <input id="password" class="auth-input" type="password" name="password" placeholder="Password" required autocomplete="current-password" />
+                    <input id="password" class="auth-input" type="password" name="password" placeholder="Password" value="{{ $demoMode ? $demoPassword : '' }}" required autocomplete="current-password" />
                     @error('password')
                         <p class="text-sm text-red-600">{{ $message }}</p>
                     @enderror
+
+                    @if ($demoMode)
+                        <p style="margin-top: 0.75rem; color: #6c757d; font-size: 0.875rem;">
+                            Demo attiva: usa <strong>{{ $demoEmail }}</strong> / <strong>{{ $demoPassword }}</strong>
+                        </p>
+                    @endif
 
                     <div class="remember-forgot">
                         <label class="remember-me">

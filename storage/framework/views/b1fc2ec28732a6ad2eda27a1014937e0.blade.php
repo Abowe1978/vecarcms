@@ -1,6 +1,0 @@
-@include('shortcodes.render', ['__shortcode_id' => 'sc_691311af945e96.97884909'])
-@include('shortcodes.render', ['__shortcode_id' => 'sc_691311af945f85.81863835'])
-@include('shortcodes.render', ['__shortcode_id' => 'sc_691311af946029.04967323'])
-@include('shortcodes.render', ['__shortcode_id' => 'sc_691311af9460a3.67007149'])
-@include('shortcodes.render', ['__shortcode_id' => 'sc_691311af946106.93527979'])
-@include('shortcodes.render', ['__shortcode_id' => 'sc_691311af946164.90734294'])
