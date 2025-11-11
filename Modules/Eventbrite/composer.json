@@ -1,0 +1,30 @@
+{
+    "name": "nwidart/eventbrite",
+    "description": "",
+    "authors": [
+        {
+            "name": "Nicolas Widart",
+            "email": "n.widart@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [],
+            "aliases": {
+
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\Eventbrite\\": "app/",
+            "Modules\\Eventbrite\\Database\\Factories\\": "database/factories/",
+            "Modules\\Eventbrite\\Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Modules\\Eventbrite\\Tests\\": "tests/"
+        }
+    }
+}

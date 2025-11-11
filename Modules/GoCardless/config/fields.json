@@ -1,0 +1,11 @@
+{
+    "access_token": "password",
+    "webhook_endpoint_secret": "password",
+    "environment": {
+        "type": "select",
+        "options": {
+            "live": "Live",
+            "sandbox": "Sandbox"
+        }
+    }
+} 

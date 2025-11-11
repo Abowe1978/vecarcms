@@ -1,0 +1,11 @@
+{
+    "name": "Xero",
+    "alias": "xero",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Xero\\app\\Providers\\XeroServiceProvider"
+    ],
+    "files": []
+}

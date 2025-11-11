@@ -1,0 +1,8 @@
+{
+    "name": "QuickBooks",
+    "description": "Sincronizza fatture e clienti con QuickBooks Online.",
+    "providers": [
+        "Modules\\QuickBooks\\app\\Providers\\QuickBooksServiceProvider"
+    ],
+    "files": []
+} 

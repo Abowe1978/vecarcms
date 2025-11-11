@@ -1,0 +1,12 @@
+{
+    "client_id": "text",
+    "client_secret": "password",
+    "redirect_uri": "text",
+    "environment": {
+        "type": "select",
+        "options": {
+            "sandbox": "Sandbox",
+            "production": "Production"
+        }
+    }
+} 

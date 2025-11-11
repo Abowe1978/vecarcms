@@ -1,0 +1,11 @@
+{
+    "name": "Loqate",
+    "alias": "loqate",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Loqate\\app\\Providers\\LoqateServiceProvider"
+    ],
+    "files": []
+}

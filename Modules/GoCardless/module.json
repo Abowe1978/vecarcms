@@ -1,0 +1,11 @@
+{
+    "name": "GoCardless",
+    "alias": "gocardless",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\GoCardless\\app\\Providers\\GoCardlessServiceProvider"
+    ],
+    "files": []
+}

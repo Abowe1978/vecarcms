@@ -1,0 +1,10 @@
+{
+    "public_key": "text",
+    "secret_key": "password",
+    "webhook_secret": "password",
+    "webhook_url": "text",
+    "currency": "select",
+    "sandbox_mode": "checkbox",
+    "statement_descriptor": "text",
+    "automatic_tax": "checkbox"
+} 

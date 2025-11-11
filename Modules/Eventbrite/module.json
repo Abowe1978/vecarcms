@@ -1,0 +1,11 @@
+{
+    "name": "Eventbrite",
+    "alias": "eventbrite",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Eventbrite\\app\\Providers\\EventbriteServiceProvider"
+    ],
+    "files": []
+}

@@ -1,0 +1,7 @@
+{
+    "api_key": "password",
+    "list_id": "text",
+    "add_members_auto": "checkbox",
+    "double_optin": "checkbox",
+    "webhook_url": "text"
+} 

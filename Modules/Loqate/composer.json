@@ -1,0 +1,30 @@
+{
+    "name": "nwidart/loqate",
+    "description": "",
+    "authors": [
+        {
+            "name": "Nicolas Widart",
+            "email": "n.widart@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [],
+            "aliases": {
+
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\Loqate\\": "app/",
+            "Modules\\Loqate\\Database\\Factories\\": "database/factories/",
+            "Modules\\Loqate\\Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Modules\\Loqate\\Tests\\": "tests/"
+        }
+    }
+}

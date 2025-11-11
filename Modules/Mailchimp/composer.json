@@ -1,0 +1,30 @@
+{
+    "name": "nwidart/mailchimp",
+    "description": "",
+    "authors": [
+        {
+            "name": "Nicolas Widart",
+            "email": "n.widart@gmail.com"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "providers": [],
+            "aliases": {
+
+            }
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "Modules\\Mailchimp\\": "app/",
+            "Modules\\Mailchimp\\Database\\Factories\\": "database/factories/",
+            "Modules\\Mailchimp\\Database\\Seeders\\": "database/seeders/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Modules\\Mailchimp\\Tests\\": "tests/"
+        }
+    }
+}

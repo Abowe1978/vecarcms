@@ -1,0 +1,11 @@
+{
+    "name": "Mailchimp",
+    "alias": "mailchimp",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Mailchimp\\app\\Providers\\MailchimpServiceProvider"
+    ],
+    "files": []
+}
