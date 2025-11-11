@@ -1,0 +1,126 @@
+/* Admin Bar */
+.admin-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 99999;
+    background: #23282d;
+    color: #fff;
+    font-size: 13px;
+    line-height: 1;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+}
+
+.admin-bar-logo {
+    color: #fff;
+    font-size: 15px;
+    padding: 0 10px;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    transition: all 0.2s;
+}
+
+.admin-bar-logo:hover {
+    background: #32373c;
+    color: #00b9eb;
+}
+
+.admin-bar-item {
+    color: rgba(240, 246, 252, 0.7);
+    text-decoration: none;
+    padding: 0 12px;
+    height: 46px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.admin-bar-item:hover,
+.admin-bar-item:focus {
+    color: #00b9eb;
+    background: #32373c;
+}
+
+.admin-bar-item i {
+    font-size: 16px;
+}
+
+.admin-bar-edit {
+    background: #0073aa;
+    color: #fff !important;
+    border-radius: 3px;
+    margin: 0 5px;
+    height: 32px;
+    padding: 0 12px;
+}
+
+.admin-bar-edit:hover {
+    background: #005177;
+    color: #fff !important;
+}
+
+/* Dropdown Menus */
+.admin-bar .dropdown-menu {
+    background: #32373c;
+    border: none;
+    box-shadow: 0 3px 5px rgba(0,0,0,0.2);
+    margin-top: 0;
+}
+
+.admin-bar .dropdown-item {
+    color: rgba(240, 246, 252, 0.7);
+    padding: 8px 16px;
+    font-size: 13px;
+}
+
+.admin-bar .dropdown-item:hover {
+    background: #0073aa;
+    color: #fff;
+}
+
+.admin-bar .dropdown-divider {
+    border-color: rgba(255,255,255,0.1);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .admin-bar {
+        height: 46px;
+        font-size: 12px;
+    }
+    
+    .admin-bar-item {
+        padding: 0 8px;
+        font-size: 12px;
+    }
+    
+    .admin-bar-logo span {
+        display: none;
+    }
+}
+
+/* Ensure admin bar doesn't overlap navbar */
+body.admin-logged-in {
+    padding-top: 46px;
+}
+
+.navbar.fixed-top {
+    top: 46px;
+}
+
+@media (max-width: 768px) {
+    body.admin-logged-in {
+        padding-top: 46px;
+    }
+}
+

@@ -5,6 +5,7 @@
 themes/*
 !themes/.gitkeep
 !themes/vecartheme/
+!themes/dwntheme/
 
 # Ignore uploaded plugins
 plugins/*

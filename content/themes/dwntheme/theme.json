@@ -1,0 +1,125 @@
+{
+    "name": "dwntheme",
+    "slug": "dwntheme",
+    "version": "1.0.0",
+    "author": "VeCarCMS Team",
+    "author_url": "https://gruppobonifacio.com",
+    "description": "A modern Bootstrap 5 business theme with responsive design, perfect for corporate websites and SAAS applications.",
+    "screenshot": "screenshot.png",
+    "tags": ["business", "corporate", "bootstrap", "responsive", "modern", "saas"],
+    "requires_php": "8.2",
+    "requires_cms": "1.0",
+    "supports": {
+        "page_builder": true,
+        "widgets": true,
+        "menus": true,
+        "custom_logo": true,
+        "custom_header": true,
+        "custom_background": false,
+        "post_thumbnails": true,
+        "post_formats": ["standard", "video", "gallery"],
+        "custom_css": true,
+        "child_themes": true
+    },
+    "menus": {
+        "primary": {
+            "name": "Primary Menu",
+            "description": "Main navigation menu displayed in the header"
+        },
+        "footer": {
+            "name": "Footer Menu",
+            "description": "Navigation menu displayed in the footer"
+        }
+    },
+    "widget_zones": {
+        "sidebar-blog": {
+            "name": "Blog Sidebar",
+            "description": "Sidebar displayed on blog archive and single post pages"
+        },
+        "sidebar-page": {
+            "name": "Page Sidebar",
+            "description": "Sidebar displayed on standard pages"
+        },
+        "footer-1": {
+            "name": "Footer Column 1",
+            "description": "First footer widget area"
+        },
+        "footer-2": {
+            "name": "Footer Column 2",
+            "description": "Second footer widget area"
+        },
+        "footer-3": {
+            "name": "Footer Column 3",
+            "description": "Third footer widget area"
+        },
+        "footer-4": {
+            "name": "Footer Column 4",
+            "description": "Fourth footer widget area"
+        }
+    },
+    "customizer": {
+        "colors": {
+            "primary_color": {
+                "label": "Primary Color",
+                "default": "#0d6efd",
+                "section": "colors"
+            },
+            "secondary_color": {
+                "label": "Secondary Color",
+                "default": "#198754",
+                "section": "colors"
+            },
+            "text_color": {
+                "label": "Text Color",
+                "default": "#212529",
+                "section": "colors"
+            },
+            "link_color": {
+                "label": "Link Color",
+                "default": "#0d6efd",
+                "section": "colors"
+            }
+        },
+        "typography": {
+            "body_font": {
+                "label": "Body Font",
+                "default": "Metropolis, sans-serif",
+                "section": "typography"
+            },
+            "heading_font": {
+                "label": "Heading Font",
+                "default": "Metropolis, sans-serif",
+                "section": "typography"
+            },
+            "font_size": {
+                "label": "Base Font Size",
+                "default": "16px",
+                "section": "typography"
+            }
+        },
+        "layout": {
+            "container_width": {
+                "label": "Container Width",
+                "default": "1320px",
+                "section": "layout"
+            },
+            "sidebar_position": {
+                "label": "Sidebar Position",
+                "default": "right",
+                "options": ["left", "right", "none"],
+                "section": "layout"
+            }
+        }
+    },
+    "page_templates": {
+        "default": "Default Template",
+        "full-width": "Full Width (No Sidebar)",
+        "landing": "Landing Page",
+        "contact": "Contact Page"
+    },
+    "post_templates": {
+        "default": "Default Template",
+        "full-width": "Full Width (No Sidebar)"
+    }
+}
+
