@@ -1,0 +1,20 @@
+# VeCarCMS Content Directory
+# Similar to WordPress wp-content/
+
+# Ignore uploaded themes (except default)
+themes/*
+!themes/.gitkeep
+!themes/vecartheme/
+
+# Ignore uploaded plugins
+plugins/*
+!plugins/.gitkeep
+
+# Ignore uploads (media is in storage/app/public)
+uploads/*
+!uploads/.gitkeep
+
+# Keep custom themes/plugins in version control if needed
+# !themes/your-custom-theme/
+# !plugins/your-custom-plugin/
+
