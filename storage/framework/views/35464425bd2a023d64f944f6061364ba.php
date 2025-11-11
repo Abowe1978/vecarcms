@@ -1,0 +1,6 @@
+<?php echo $__env->make('shortcodes.render', ['__shortcode_id' => 'sc_691311af945e96.97884909'], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+<?php echo $__env->make('shortcodes.render', ['__shortcode_id' => 'sc_691311af945f85.81863835'], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+<?php echo $__env->make('shortcodes.render', ['__shortcode_id' => 'sc_691311af946029.04967323'], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+<?php echo $__env->make('shortcodes.render', ['__shortcode_id' => 'sc_691311af9460a3.67007149'], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+<?php echo $__env->make('shortcodes.render', ['__shortcode_id' => 'sc_691311af946106.93527979'], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+<?php echo $__env->make('shortcodes.render', ['__shortcode_id' => 'sc_691311af946164.90734294'], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH /Users/carminedamore/Development/gruppobonifacio/storage/framework/views/b1fc2ec28732a6ad2eda27a1014937e0.blade.php ENDPATH**/ ?>

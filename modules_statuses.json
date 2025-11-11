@@ -1,0 +1,11 @@
+{
+    "Stripe": true,
+    "Mailchimp": true,
+    "Eventbrite": false,
+    "Discourse": false,
+    "Loqate": false,
+    "GoCardless": false,
+    "Paypal": false,
+    "QuickBooks": false,
+    "Xero": false
+}

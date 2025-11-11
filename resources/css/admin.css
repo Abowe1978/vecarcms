@@ -1,0 +1,27 @@
+/* Admin Panel Styles */
+.sidebar {
+    background-color: #1f2937;
+}
+
+.main-content {
+    background-color: #ffffff;
+}
+
+.top-header {
+    background-color: #ffffff;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+/* Chart.js Canvas Fix */
+canvas {
+    max-height: 400px !important;
+    height: auto !important;
+}
+
+/* Ensure chart containers have proper dimensions */
+.bg-white.rounded-lg.shadow-md canvas,
+.bg-white.rounded-lg.shadow canvas {
+    display: block;
+    box-sizing: border-box;
+    max-width: 100%;
+}
