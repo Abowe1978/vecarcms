@@ -53,7 +53,8 @@
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/",
-            "Modules\\": "Modules/"
+            "Modules\\": "Modules/",
+            "Themes\\DwnTheme\\": "content/themes/dwntheme/"
         },
         "files": [
             "app/Helpers/SettingsHelper.php",

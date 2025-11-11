@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\File;
 
 class DatabaseSeeder extends Seeder
 {
@@ -11,7 +12,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // Always seed core roles/permissions and developer account
         $this->call([
             VeCarCMSRolesSeeder::class,
             PluginPermissionSeeder::class,
@@ -27,15 +27,30 @@ class DatabaseSeeder extends Seeder
             DemoAdminSeeder::class,
             SettingsSeeder::class,
             WidgetZonesSeeder::class,
-            ThemeSeeder::class,
-            DWNThemeHomepageSeeder::class,
-            DWNThemeAboutPageSeeder::class,
-            DWNThemeContactPageSeeder::class,
-            DWNThemeMenuSeeder::class,
-            DWNThemeBlogSeeder::class,
-            DWNThemeLegalPagesSeeder::class,
             SampleContentSeeder::class,
-            DWNThemeSitemapSeeder::class,
         ]);
+
+        $this->seedActiveThemeDemoContent();
+    }
+
+    protected function seedActiveThemeDemoContent(): void
+    {
+        $themeSeederPath = base_path('content/themes/dwntheme/database/seeders/ThemeDatabaseSeeder.php');
+
+        if (!File::exists($themeSeederPath)) {
+            $this->command?->warn('⚠️  Nessun ThemeDatabaseSeeder trovato per dwntheme.');
+            return;
+        }
+
+        require_once $themeSeederPath;
+
+        $class = \Themes\DwnTheme\Database\Seeders\ThemeDatabaseSeeder::class;
+
+        if (!class_exists($class)) {
+            $this->command?->error('⚠️  Impossibile caricare ThemeDatabaseSeeder dal tema dwntheme.');
+            return;
+        }
+
+        $this->call($class);
     }
 }
