@@ -34,3 +34,5 @@ auth.json
 /public/images/
 /public/img/
 /docs/
+/storage/framework/views/*
+!/storage/framework/views/.keep

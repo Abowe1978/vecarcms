@@ -29,7 +29,8 @@ export default defineConfig({
         image(),
         viteStaticCopy({
             targets: [
-                { src: 'resources/images/*', dest: 'assets/images' }
+                { src: 'resources/images/*', dest: 'assets/images' },
+                { src: 'node_modules/tinymce/**/*', dest: 'vendor/tinymce' }
             ]
         }),
     ],

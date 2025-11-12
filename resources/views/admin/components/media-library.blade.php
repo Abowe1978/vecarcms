@@ -343,7 +343,7 @@ function mediaLibrary(inputName, initialValue, source) {
 
         async loadMediaLibrary() {
             try {
-                const response = await fetch(`/admin/media/list?source=${this.source}`);
+                const response = await fetch(`{{ route('admin.media.list') }}?source=${this.source}`);
                 const data = await response.json();
                 this.mediaLibrary = data;
                 this.filteredMedia = data;

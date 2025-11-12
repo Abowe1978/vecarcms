@@ -198,7 +198,12 @@
 <x-media-modal />
 
 @push('scripts')
-<script src="{{ asset('node_modules/tinymce/tinymce.min.js') }}"></script>
+<script src="{{ asset('build/vendor/tinymce/tinymce.min.js') }}"></script>
+<script>
+    if (window.tinymce) {
+        tinymce.baseURL = "{{ asset('build/vendor/tinymce') }}";
+    }
+</script>
 <script>
     function mediaSelector(inputName, initialValue = '') {
         return {

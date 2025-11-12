@@ -199,7 +199,7 @@ document.addEventListener('alpine:init', () => {
         
         async loadMediaLibrary() {
             try {
-                const response = await fetch('/admin/media/list');
+                const response = await fetch("{{ route('admin.media.list') }}");
                 const data = await response.json();
                 this.mediaLibrary = data;
                 this.filteredMedia = data;
