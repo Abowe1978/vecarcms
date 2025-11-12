@@ -4,7 +4,9 @@ namespace Themes\DwnTheme\Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use App\Models\Theme;
+use App\Models\WidgetZone;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
 
 class ThemeSeeder extends Seeder
 {
@@ -49,12 +51,54 @@ class ThemeSeeder extends Seeder
             $this->command?->info("✅ {$themeName} created and activated!");
         }
 
+        $this->syncWidgetZones($themeName, $themeConfig);
+
         $this->command?->newLine();
         $this->command?->info("   Theme: {$theme->display_name}");
         $this->command?->info("   Version: {$theme->version}");
         $this->command?->info("   Author: {$theme->author}");
         $this->command?->info("   Status: " . ($theme->is_active ? 'Active' : 'Inactive'));
         $this->command?->newLine();
+    }
+
+    protected function syncWidgetZones(string $themeName, array $themeConfig): void
+    {
+        $zones = data_get($themeConfig, 'widget_zones', []);
+
+        if (empty($zones)) {
+            $this->command?->warn("⚠️  Nessuna widget zone dichiarata nel tema {$themeName}.");
+            return;
+        }
+
+        $declaredZoneKeys = [];
+
+        foreach ($zones as $zoneKey => $zoneConfig) {
+            $declaredZoneKeys[] = $zoneKey;
+
+            WidgetZone::updateOrCreate(
+                ['name' => $zoneKey, 'theme' => $themeName],
+                [
+                    'display_name' => $zoneConfig['name'] ?? Str::title(str_replace(['-', '_'], ' ', $zoneKey)),
+                    'description' => $zoneConfig['description'] ?? null,
+                    'is_active' => true,
+                ]
+            );
+
+            cache()->forget("widget.zone.{$zoneKey}.{$themeName}");
+        }
+
+        WidgetZone::where('theme', $themeName)
+            ->whereNotIn('name', $declaredZoneKeys)
+            ->update(['is_active' => false]);
+
+        foreach (WidgetZone::where('theme', $themeName)->get() as $zone) {
+            cache()->forget("widget.zone.{$zone->name}.{$themeName}");
+        }
+
+        $this->command?->info('✅ Widget zones aggiornate per il tema: ' . $themeName);
+        foreach ($declaredZoneKeys as $zoneKey) {
+            $this->command?->info("   • {$zoneKey}");
+        }
     }
 }
 

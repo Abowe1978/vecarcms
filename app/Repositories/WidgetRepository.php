@@ -16,9 +16,21 @@ class WidgetRepository
     /**
      * Get all widget zones
      */
-    public function getAllZones(): Collection
+    public function getAllZones(?string $theme = null): Collection
     {
-        return $this->widgetZone->with('widgets')->get();
+        $query = $this->widgetZone
+            ->with('widgets')
+            ->active()
+            ->orderBy('name');
+
+        if ($theme) {
+            $query->where(function ($subQuery) use ($theme) {
+                $subQuery->where('theme', $theme)
+                         ->orWhereNull('theme');
+            });
+        }
+
+        return $query->get();
     }
 
     /**
@@ -37,7 +49,10 @@ class WidgetRepository
         $query = $this->widgetZone->byName($name)->active();
         
         if ($theme) {
-            $query->forTheme($theme);
+            $query->where(function ($subQuery) use ($theme) {
+                $subQuery->where('theme', $theme)
+                         ->orWhereNull('theme');
+            })->orderByRaw('CASE WHEN theme = ? THEN 0 ELSE 1 END', [$theme]);
         } else {
             $query->whereNull('theme');
         }

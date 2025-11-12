@@ -44,27 +44,7 @@
                 </ul>
             @endif
 
-            <!-- CTA Buttons-->
-            <div class="d-flex align-items-center">
-                @auth
-                    <form method="POST" action="{{ route('logout') }}" class="d-inline">
-                        @csrf
-                        <button type="submit" class="btn btn-sm btn-primary">
-                            Logout
-                        </button>
-                    </form>
-                @else
-                    <a class="btn btn-sm btn-link text-muted fw-medium d-none d-lg-block me-3" href="{{ route('login') }}">
-                        Sign In
-                    </a>
-                    @if(settings('allow_registration', true))
-                        <a class="btn btn-sm btn-primary" href="{{ route('register') }}">
-                            Get Started
-                        </a>
-                    @endif
-                @endauth
-            </div>
-            <!-- / CTA Buttons-->
+
         </div>
 
     </div>

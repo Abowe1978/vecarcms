@@ -17,6 +17,8 @@ class DWNThemeMenuSeeder extends Seeder
         $contactPage = Page::where('slug', 'contact')->first();
         $privacyPage = Page::where('slug', 'privacy-policy')->first();
         $termsPage = Page::where('slug', 'terms-of-service')->first();
+        $servicesPage = Page::where('slug', 'services')->first();
+        $faqPage = Page::where('slug', 'faq')->first();
 
         $primaryMenu = Menu::updateOrCreate(
             ['location' => 'primary'],
@@ -30,30 +32,10 @@ class DWNThemeMenuSeeder extends Seeder
         $primaryMenu->allItems()->delete();
 
         $primaryItems = [
-            [
-                'title' => 'Home',
-                'type' => 'page',
-                'object_id' => $homePage?->id,
-                'order' => 1,
-            ],
-            [
-                'title' => 'About',
-                'type' => 'page',
-                'object_id' => $aboutPage?->id,
-                'order' => 2,
-            ],
-            [
-                'title' => 'Blog',
-                'type' => 'page',
-                'object_id' => $blogPage?->id,
-                'order' => 3,
-            ],
-            [
-                'title' => 'Contact',
-                'type' => 'page',
-                'object_id' => $contactPage?->id,
-                'order' => 4,
-            ],
+            $this->pageMenuItem('Home', $homePage, '/', 1),
+            $this->pageMenuItem('About', $aboutPage, '/about', 2),
+            $this->pageMenuItem('Blog', $blogPage, '/blog', 3),
+            $this->pageMenuItem('Contact', $contactPage, '/contact', 4),
         ];
 
         foreach ($primaryItems as $item) {
@@ -80,24 +62,9 @@ class DWNThemeMenuSeeder extends Seeder
         $footerMenu->allItems()->delete();
 
         $footerItems = [
-            [
-                'title' => 'Privacy Policy',
-                'type' => 'page',
-                'object_id' => $privacyPage?->id,
-                'order' => 1,
-            ],
-            [
-                'title' => 'Terms of Service',
-                'type' => 'page',
-                'object_id' => $termsPage?->id,
-                'order' => 2,
-            ],
-            [
-                'title' => 'Contact',
-                'type' => 'page',
-                'object_id' => $contactPage?->id,
-                'order' => 3,
-            ],
+            $this->pageMenuItem('Privacy Policy', $privacyPage, '/privacy-policy', 1),
+            $this->pageMenuItem('Terms of Service', $termsPage, '/terms-of-service', 2),
+            $this->pageMenuItem('Contact', $contactPage, '/contact', 3),
             [
                 'title' => 'Sitemap',
                 'type' => 'custom',
@@ -117,6 +84,117 @@ class DWNThemeMenuSeeder extends Seeder
                 'is_active' => true,
             ]);
         }
+
+        $companyMenu = Menu::updateOrCreate(
+            ['location' => 'footer-company'],
+            [
+                'name' => 'Company',
+                'description' => 'Company links displayed in footer column',
+                'is_active' => true,
+            ]
+        );
+
+        $companyMenu->allItems()->delete();
+
+        $companyItems = [
+            $this->pageMenuItem('Home', $homePage, '/', 1),
+            $this->pageMenuItem('About', $aboutPage, '/about', 2),
+            $this->pageMenuItem('Contact', $contactPage, '/contact', 3),
+        ];
+
+        foreach ($companyItems as $item) {
+            MenuItem::create([
+                'menu_id' => $companyMenu->id,
+                'title' => $item['title'],
+                'type' => $item['type'],
+                'object_id' => $item['object_id'] ?? null,
+                'url' => $item['url'] ?? null,
+                'order' => $item['order'],
+                'is_active' => true,
+            ]);
+        }
+
+        $resourcesMenu = Menu::updateOrCreate(
+            ['location' => 'footer-resources'],
+            [
+                'name' => 'Resources',
+                'description' => 'Resource links displayed in footer column',
+                'is_active' => true,
+            ]
+        );
+
+        $resourcesMenu->allItems()->delete();
+
+        $resourcesItems = [
+            $this->pageMenuItem('Blog', $blogPage, '/blog', 1),
+            $this->pageMenuItem('Services', $servicesPage, '/services', 2),
+            $this->pageMenuItem('FAQ', $faqPage, '/faq', 3),
+        ];
+
+        foreach ($resourcesItems as $item) {
+            MenuItem::create([
+                'menu_id' => $resourcesMenu->id,
+                'title' => $item['title'],
+                'type' => $item['type'],
+                'object_id' => $item['object_id'] ?? null,
+                'url' => $item['url'] ?? null,
+                'order' => $item['order'],
+                'is_active' => true,
+            ]);
+        }
+
+        $legalMenu = Menu::updateOrCreate(
+            ['location' => 'footer-legal'],
+            [
+                'name' => 'Legal',
+                'description' => 'Legal links displayed in footer column',
+                'is_active' => true,
+            ]
+        );
+
+        $legalMenu->allItems()->delete();
+
+        $legalItems = [
+            $this->pageMenuItem('Privacy Policy', $privacyPage, '/privacy-policy', 1),
+            $this->pageMenuItem('Terms of Service', $termsPage, '/terms-of-service', 2),
+            [
+                'title' => 'Sitemap',
+                'type' => 'custom',
+                'url' => '/sitemap.xml',
+                'order' => 3,
+            ],
+        ];
+
+        foreach ($legalItems as $item) {
+            MenuItem::create([
+                'menu_id' => $legalMenu->id,
+                'title' => $item['title'],
+                'type' => $item['type'],
+                'object_id' => $item['object_id'] ?? null,
+                'url' => $item['url'] ?? null,
+                'order' => $item['order'],
+                'is_active' => true,
+            ]);
+        }
+    }
+
+    protected function pageMenuItem(string $title, ?Page $page, string $fallbackUrl, int $order): array
+    {
+        if ($page) {
+            return [
+                'title' => $title,
+                'type' => 'page',
+                'object_id' => $page->id,
+                'order' => $order,
+            ];
+        }
+
+        return [
+            'title' => $title,
+            'type' => 'custom',
+            'url' => $fallbackUrl,
+            'order' => $order,
+        ];
     }
 }
 

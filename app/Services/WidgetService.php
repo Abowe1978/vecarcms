@@ -17,9 +17,11 @@ class WidgetService
     /**
      * Get all widget zones
      */
-    public function getAllZones(): Collection
+    public function getAllZones(?string $theme = null): Collection
     {
-        return $this->widgetRepository->getAllZones();
+        $resolvedTheme = $theme ?? (function_exists('active_theme') ? active_theme() : null);
+
+        return $this->widgetRepository->getAllZones($resolvedTheme);
     }
 
     /**
@@ -35,10 +37,11 @@ class WidgetService
      */
     public function getZoneByName(string $name, ?string $theme = null): ?WidgetZone
     {
-        $cacheKey = "widget.zone.{$name}." . ($theme ?? 'default');
+        $resolvedTheme = $theme ?? (function_exists('active_theme') ? active_theme() : null);
+        $cacheKey = "widget.zone.{$name}." . ($resolvedTheme ?? 'default');
         
-        return Cache::remember($cacheKey, 3600, function () use ($name, $theme) {
-            return $this->widgetRepository->findZoneByName($name, $theme);
+        return Cache::remember($cacheKey, 3600, function () use ($name, $resolvedTheme) {
+            return $this->widgetRepository->findZoneByName($name, $resolvedTheme);
         });
     }
 
@@ -122,7 +125,8 @@ class WidgetService
      */
     public function renderZone(string $zoneName, ?string $theme = null): string
     {
-        $zone = $this->getZoneByName($zoneName, $theme);
+        $resolvedTheme = $theme ?? (function_exists('active_theme') ? active_theme() : null);
+        $zone = $this->getZoneByName($zoneName, $resolvedTheme);
 
         if (!$zone) {
             return '';

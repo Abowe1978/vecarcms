@@ -2,6 +2,7 @@
 
 use App\Models\Menu;
 use App\Services\MenuService;
+use Illuminate\Support\Facades\File;
 
 if (!function_exists('menu')) {
     /**
@@ -60,14 +61,43 @@ if (!function_exists('menu_locations')) {
      */
     function menu_locations(): array
     {
-        return [
+        $locations = collect([
             'primary' => 'Primary Menu (Header)',
             'header' => 'Header Menu',
             'footer' => 'Footer Menu',
             'sidebar' => 'Sidebar Menu',
             'mobile' => 'Mobile Menu',
             'social' => 'Social Links',
-        ];
+        ]);
+
+        $themeName = function_exists('active_theme') ? active_theme() : null;
+
+        if ($themeName) {
+            $themeConfigPath = base_path("content/themes/{$themeName}/theme.json");
+
+            if (File::exists($themeConfigPath)) {
+                $config = json_decode(File::get($themeConfigPath), true);
+                $themeMenus = collect(data_get($config, 'menus', []))
+                    ->mapWithKeys(function ($menu, $key) {
+                        $label = is_array($menu) ? ($menu['name'] ?? null) : null;
+                        $label = $label ?: ucwords(str_replace(['-', '_'], ' ', $key));
+
+                        return [$key => $label];
+                    });
+
+                $locations = $locations->union($themeMenus);
+            }
+        }
+
+        $databaseMenus = Menu::query()
+            ->whereNotNull('location')
+            ->get()
+            ->mapWithKeys(function (Menu $menu) {
+                $label = $menu->name ?: ucwords(str_replace(['-', '_'], ' ', $menu->location));
+                return [$menu->location => $label];
+            });
+
+        return $locations->union($databaseMenus)->toArray();
     }
 }
 

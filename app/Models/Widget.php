@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Str;
 
 class Widget extends Model
 {
@@ -147,7 +148,7 @@ class Widget extends Model
      */
     public function getWidgetInstance()
     {
-        $className = 'App\\Widgets\\' . studly_case($this->type) . 'Widget';
+        $className = 'App\\Widgets\\' . Str::studly($this->type) . 'Widget';
 
         if (!class_exists($className)) {
             return null;

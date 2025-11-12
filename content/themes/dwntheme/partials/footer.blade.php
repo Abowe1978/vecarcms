@@ -1,4 +1,37 @@
 <!-- Footer -->
+@once
+    <style>
+        .footer-nav li + li {
+            margin-top: .4rem;
+        }
+
+        .footer-nav li a {
+            color: rgba(148, 163, 184, 0.85);
+            text-decoration: none;
+            transition: color .2s ease, opacity .2s ease;
+        }
+
+        .footer-nav li a:hover {
+            color: #ffffff;
+        }
+
+        .dwn-footer-menu {
+            gap: 2rem;
+        }
+
+        .dwn-footer-menu li a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-size: .9rem;
+            transition: color .2s ease, opacity .2s ease;
+        }
+
+        .dwn-footer-menu li a:hover {
+            color: #ffffff;
+            opacity: 1;
+        }
+    </style>
+@endonce
 <footer class="bg-dark pt-10 pb-5  ">
     <div class="container">
 
@@ -98,10 +131,6 @@
                 <div class="mb-4 mb-lg-0" style="min-width: 200px;">
                     @if(has_widgets('footer-4'))
                         {!! widget_area('footer-4') !!}
-                    @else
-                        <h6 class="text-uppercase fs-xs fw-bolder tracking-wider text-white opacity-50">Newsletter</h6>
-                        <p class="text-white opacity-75 fs-sm">Stay up to date with our latest news and updates.</p>
-                        <x-widgets.newsletter title="" />
                     @endif
                 </div>
                 <!-- /Footer Widget Column 4-->
@@ -119,13 +148,7 @@
 
             {{-- Footer Menu --}}
             @if(has_menu('footer'))
-                {!! menu('footer', ['class' => 'list-unstyled d-flex mt-3 mt-md-0 mb-0']) !!}
-            @else
-                <ul class="list-unstyled d-flex mt-3 mt-md-0 mb-0">
-                    <li class="ms-5"><a href="{{ url('/privacy') }}" class="text-muted text-decoration-none fs-sm opacity-75-hover transition-opacity">Privacy</a></li>
-                    <li class="ms-5"><a href="{{ url('/terms') }}" class="text-muted text-decoration-none fs-sm opacity-75-hover transition-opacity">Terms</a></li>
-                    <li class="ms-5"><a href="{{ url('/sitemap.xml') }}" class="text-muted text-decoration-none fs-sm opacity-75-hover transition-opacity">Sitemap</a></li>
-                </ul>
+                {!! menu('footer', ['class' => 'list-unstyled d-flex mt-3 mt-md-0 mb-0 dwn-footer-menu']) !!}
             @endif
         </div>
         <!-- / Footer Copyright-->

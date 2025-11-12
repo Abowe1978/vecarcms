@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\JsonResponse;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Cache;
 
 class WidgetController extends Controller
 {
@@ -24,10 +25,18 @@ class WidgetController extends Controller
      */
     public function index(): View
     {
-        $zones = $this->widgetService->getAllZones();
+        $activeTheme = function_exists('active_theme') ? active_theme() : null;
+        $themeObject = function_exists('active_theme_object') ? active_theme_object() : null;
+
+        $zones = $this->widgetService->getAllZones($activeTheme);
         $availableWidgets = available_widgets();
 
-        return view('admin.widgets.index', compact('zones', 'availableWidgets'));
+        return view('admin.widgets.index', [
+            'zones' => $zones,
+            'availableWidgets' => $availableWidgets,
+            'activeTheme' => $activeTheme,
+            'activeThemeObject' => $themeObject,
+        ]);
     }
 
     /**
@@ -50,13 +59,11 @@ class WidgetController extends Controller
             'zone_id' => 'required|exists:widget_zones,id',
             'type' => 'required|string',
             'title' => 'nullable|string|max:255',
-            'config' => 'nullable|array',
+            'settings' => 'nullable|array',
             'is_active' => 'boolean',
         ]);
 
         $validated['order'] = $this->widgetService->getWidgetsForZone($validated['zone_id'])->count();
-        $validated['settings'] = json_encode($validated['config'] ?? []);
-        unset($validated['config']);
 
         $widget = $this->widgetService->createWidget($validated);
 

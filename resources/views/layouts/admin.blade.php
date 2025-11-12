@@ -155,59 +155,6 @@
                             </div>
                         </div>
 
-                        <div class="flex items-center gap-8">
-                            <!-- Language Selector -->
-                            <x-language-selector />
-
-                            <!-- User Menu -->
-                            <div class="relative" 
-                                 x-data="{ profileOpen: false }" 
-                                 @click.away="profileOpen = false"
-                                 @keydown.escape.window="profileOpen = false">
-                                <button @click="profileOpen = !profileOpen"
-                                        class="flex items-center space-x-2 text-gray-700 hover:text-gray-900 focus:outline-none">
-                                    @if(Auth::user()->profile_image)
-                                        <img src="{{ asset('storage/' . Auth::user()->profile_image) }}"
-                                            alt="{{ __('admin.header.profile') }}"
-                                            class="w-8 h-8 rounded-full object-cover">
-                                    @else
-                                        <div class="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center">
-                                            <svg class="w-5 h-5 text-gray-600" fill="currentColor" viewBox="0 0 20 20">
-                                                <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
-                                            </svg>
-                                        </div>
-                                    @endif
-                                    <span class="mx-2">{{ Auth::user()->name }}</span>
-                                    <i class="fas fa-chevron-down text-xs"
-                                       :class="{ 'transform rotate-180': profileOpen }"></i>
-                                </button>
-
-                                <!-- Dropdown -->
-                                <div x-show="profileOpen"
-                                    x-cloak
-                                    x-transition:enter="transition ease-out duration-200"
-                                    x-transition:enter-start="opacity-0 scale-95"
-                                    x-transition:enter-end="opacity-100 scale-100"
-                                    x-transition:leave="transition ease-in duration-75"
-                                    x-transition:leave-start="opacity-100 scale-100"
-                                    x-transition:leave-end="opacity-0 scale-95"
-                                    class="absolute {{ config('app.available_locales')[app()->getLocale()]['rtl'] ? 'left-0' : 'right-0' }} mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 z-50">
-
-                                    <a href="{{ route('admin.profile.show') }}" 
-                                       class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition duration-150 ease-in-out">
-                                        <i class="fas fa-user mr-2"></i> {{ __('admin.header.profile') }}
-                                    </a>
-
-                                    <form method="POST" action="{{ route('logout') }}">
-                                        @csrf
-                                        <button type="submit" 
-                                                class="w-full text-left px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 transition duration-150 ease-in-out">
-                                            <i class="fas fa-sign-out-alt mr-2"></i> {{ __('admin.header.logout') }}
-                                        </button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </header>
 

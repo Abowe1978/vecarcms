@@ -13,7 +13,9 @@ if (!function_exists('widget_area')) {
     function widget_area(string $zoneName, ?string $theme = null): string
     {
         $widgetService = app(WidgetService::class);
-        return $widgetService->renderZone($zoneName, $theme);
+        $resolvedTheme = $theme ?? (function_exists('active_theme') ? active_theme() : null);
+
+        return $widgetService->renderZone($zoneName, $resolvedTheme);
     }
 }
 
@@ -28,7 +30,8 @@ if (!function_exists('has_widgets')) {
     function has_widgets(string $zoneName, ?string $theme = null): bool
     {
         $widgetService = app(WidgetService::class);
-        $zone = $widgetService->getZoneByName($zoneName, $theme);
+        $resolvedTheme = $theme ?? (function_exists('active_theme') ? active_theme() : null);
+        $zone = $widgetService->getZoneByName($zoneName, $resolvedTheme);
         
         if (!$zone) {
             return false;
@@ -44,15 +47,14 @@ if (!function_exists('widget_zones')) {
      *
      * @return array
      */
-    function widget_zones(): array
+    function widget_zones(?string $theme = null): array
     {
-        return [
-            'sidebar' => 'Sidebar',
-            'footer' => 'Footer',
-            'header' => 'Header',
-            'before_content' => 'Before Content',
-            'after_content' => 'After Content',
-        ];
+        $widgetService = app(WidgetService::class);
+        $resolvedTheme = $theme ?? (function_exists('active_theme') ? active_theme() : null);
+
+        return $widgetService->getAllZones($resolvedTheme)
+            ->mapWithKeys(fn ($zone) => [$zone->name => $zone->display_name])
+            ->toArray();
     }
 }
 

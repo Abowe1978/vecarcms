@@ -93,6 +93,7 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::middleware(['can:manage_widgets'])->group(function () {
         Route::get('widgets', [App\Http\Controllers\Admin\WidgetController::class, 'index'])->name('widgets.index');
         Route::get('widgets/{widget}/edit', [App\Http\Controllers\Admin\WidgetController::class, 'edit'])->name('widgets.edit');
+        Route::get('widgets/types/{type}/fields', [App\Http\Controllers\Admin\WidgetController::class, 'getFormFields'])->name('widgets.fields');
         Route::post('widgets', [App\Http\Controllers\Admin\WidgetController::class, 'store'])->name('widgets.store');
         Route::put('widgets/{widget}', [App\Http\Controllers\Admin\WidgetController::class, 'update'])->name('widgets.update');
         Route::delete('widgets/{widget}', [App\Http\Controllers\Admin\WidgetController::class, 'destroy'])->name('widgets.destroy');
