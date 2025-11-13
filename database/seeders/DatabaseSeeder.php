@@ -35,7 +35,7 @@ class DatabaseSeeder extends Seeder
 
     protected function seedActiveThemeDemoContent(): void
     {
-        $themeSeederPath = base_path('content/themes/dwntheme/database/seeders/ThemeDatabaseSeeder.php');
+        $themeSeederPath = base_path('content/themes/dwntheme/Database/Seeders/ThemeDatabaseSeeder.php');
 
         if (!File::exists($themeSeederPath)) {
             $this->command?->warn('⚠️  Nessun ThemeDatabaseSeeder trovato per dwntheme.');

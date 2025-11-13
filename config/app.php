@@ -51,7 +51,7 @@ return [
     |
     */
 
-    'demo_mode' => (bool) env('APP_DEMO', false),
+    'demo_mode' => (bool) env('APP_DEMO', true),
 
     /*
     |--------------------------------------------------------------------------
